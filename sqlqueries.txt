@@ -1,0 +1,50 @@
+create table user(
+name varchar(30),
+age int,
+email varchar(40),
+address varchar(100),
+weight numeric(5,2),
+height int,
+username varchar(20),
+password varchar(20))
+
+
+create table team(
+noOfPlayers int,
+teamName varchar(20))
+
+create table payment(
+type_of_payement varchar(20),
+amount numeric(5,2))
+
+create table tournament(
+noOfTeams int,
+entryFee numeric(5,2),
+ageLimit int,
+venue varchar(20),
+time varchar(20),
+date varchar(20),
+noOfParticipants int)
+
+
+create table event(
+event_id int auto_increment,
+event_name varchar(100),
+sport varchar(100),
+ageLimit int,
+venue varchar(255),
+time time,
+date date,
+no_of_participants int,
+primary key(event_id),
+);
+
+create table equipment(
+EQID int,
+USERID int,
+EquipName varchar(50),
+address varchar(100),
+rentamt float,
+condition varchar(50),
+primary key(EQID),
+foriegn key(USERID) references User)

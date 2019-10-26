@@ -1,6 +1,17 @@
 create database playpal_db;
 use playpal_db;
 
+create table Event(
+event_id int auto_increment primary key,
+event_name varchar(100) NOT NULL UNIQUE,
+sport varchar(100),
+ageLimit int,
+venue varchar(255),
+time time,
+date date,
+noOfParticipants int);
+
+
 create table User(
 user_id int auto_increment primary key,
 name varchar(30) NOT NULL,
@@ -12,29 +23,20 @@ weight numeric(5,2),
 height int,
 username varchar(20) NOT NULL UNIQUE,
 password varchar(20) NOT NULL,
-bmi numeric(4,2)),
+bmi numeric(4,2),
 event_id int,
-foreign key(event_id) references Event);
+foreign key(event_id) references Event(event_id));
 
-create table Event(
-event_id int auto_increment primary key,
-event_name varchar(100) NOT NULL UNIQUE,
-sport varchar(100),
-ageLimit int,
-venue varchar(255),
-time time,
-date date,
-noOfParticipants int);
 
-create Event_creator(
-event_id int primary key,
+create table Event_creator(
+event_id int,
 user_id int,
-foreign key(event_id) references Event,
-foreign key(user_id) references User, 
-);
+primary key(event_id),
+foreign key(event_id) references Event(event_id),
+foreign key(user_id) references User(user_id));
 
 create table Tournament(
-tour_id int auto_increement primary key,
+tour_id int auto_increment primary key,
 noOfTeams int,
 tour_name varchar(255) NOT NULL UNIQUE,
 entryFee numeric(5,2),
@@ -46,32 +48,30 @@ tour_noOfParticipants int);
 
 
 create table Team(
-team_id int auto_increement primary key,
+team_id int auto_increment primary key,
 noOfPlayers int,
-teamName varchar(50),
-);
+teamName varchar(50));
 
-create table tour_participation(
+create table tourn_participation(
 user_id int,
 tour_id int,
 team_id int,
-foreign key(user_id) references User,
-foreign key(tour_id) references Tournament,
-foreign key(team_id) references Team,
-primary key(user_id, tour_id);
-);
+foreign key(user_id) references User(user_id),
+foreign key(tour_id) references Tournament(tour_id),
+foreign key(team_id) references Team(team_id),
+primary key(user_id, tour_id));
 
 
 create table equipment(
-equip_id int auto_increement,
+equip_id int auto_increment,
 userid_owner int,
 userid_rentee int,
 EquipName varchar(50) NOT NULL,
 address varchar(100),
-rentamt float,
-condition varchar(50),
+rentamt numeric(10,2),
+status varchar(255),
 primary key(equip_id),
-foriegn key(userid_owner) references User(user_id),
+foreign key(userid_owner) references User(user_id),
 foreign key(userid_rentee) references User(user_id));
 
 

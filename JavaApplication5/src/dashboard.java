@@ -42,12 +42,22 @@ public class dashboard extends javax.swing.JFrame {
         button1.setLabel("Create Tournament");
 
         button2.setLabel("Create Event");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
 
         button3.setLabel("Participate in Event");
 
         button4.setLabel("Participate in Tournament");
 
         button5.setLabel("Equipments");
+        button5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button5ActionPerformed(evt);
+            }
+        });
 
         button6.setLabel("FAQ");
 
@@ -129,6 +139,17 @@ public class dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_button2ActionPerformed
+
+    private void button5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5ActionPerformed
+        // TODO add your handling code here:
+        Equipment e= new Equipment();
+        e.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button5ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -93,6 +93,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Create Event"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="button3">
       <Properties>
@@ -108,6 +111,9 @@
       <Properties>
         <Property name="label" type="java.lang.String" value="Equipments"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button5ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="java.awt.Button" name="button6">
       <Properties>

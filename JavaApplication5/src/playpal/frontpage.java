@@ -8,6 +8,7 @@
  *
  * @author MAHE
  */
+package playpal;
 public class frontpage extends javax.swing.JFrame {
 
     /**
@@ -95,7 +96,8 @@ public class frontpage extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
               // TODO add your handling code here:
-              
+            dashboard dashB= new dashboard();
+            dashB.setVisible(true);
               
     }//GEN-LAST:event_button1ActionPerformed
 

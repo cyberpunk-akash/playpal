@@ -81,21 +81,22 @@ type_of_payment varchar(20),
 amount numeric(5,2)
 )
 
+NEW QUERIES:
 
 alter table user add gender varchar(15);
-
-alter table user delete height;
+alter table user drop height;
 alter table user add height_in_feet int;
 alter table user add height_in_inches int;
-
-
-
-
 alter table user drop column password;
-
-
 alter table user add password varchar(100);
-
-alter table user drop column event_id;
-
-alter table user drop column dob;
+alter table user drop event_id;
+>>alter table Event add user_id int;
+>>alter table event add constraint foreign key(user_id) references user(user_id);
+>>alter table Tournament add tour_sport varchar(50);
+>>drop table Event_creator;
+>>alter table tournament modify tour_time varchar(100);
+>>alter table tournament modify tour_date varchar(100);
+>>alter table tournament modify entryFee decimal(10,2);
+>>alter table tournament add tour_owner varchar(100);
+>>alter table tournament add constraint foreign key(tour_owner) references user(user_id);
+alter table user drop dob;

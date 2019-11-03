@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import playpal.dashboard;
 //import static registration.hashPassword;
 
 /*
@@ -20,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class login extends javax.swing.JFrame {
 int flag = 0;
-int userid;
+public static int userid;
     /**
      * Creates new form login
      */
@@ -137,7 +138,7 @@ int userid;
         ResultSet myRs = null;
        
         String user = "root";
-        String pass = "mypass";
+        String pass = "kent";
         String extusrname , extpass = null;
         String entered_user = txtusernamelogin.getText();
         String entered_pass = txtpasswordlogin.getText();

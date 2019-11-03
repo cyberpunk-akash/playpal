@@ -370,7 +370,7 @@ public class registration extends javax.swing.JFrame {
         ResultSet myRs = null;
        
         String user = "root";
-        String pass = "mypass";
+        String pass = "kent";
         
         
         

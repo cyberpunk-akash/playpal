@@ -6,6 +6,9 @@ import java.sql.Statement;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+import net.proteanit.sql.DbUtils;
+
 
 
 
@@ -39,7 +42,7 @@ public class borrowEquipment extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Borrw = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        model = new javax.swing.JTable();
+        mytable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         borrowid = new javax.swing.JTextField();
         showtabledata = new javax.swing.JButton();
@@ -55,7 +58,7 @@ public class borrowEquipment extends javax.swing.JFrame {
             }
         });
 
-        model.setModel(new javax.swing.table.DefaultTableModel(
+        mytable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -63,7 +66,7 @@ public class borrowEquipment extends javax.swing.JFrame {
                 "Equip_id", "Equip_name", "Addressl", "Rent feel", "status"
             }
         ));
-        jScrollPane1.setViewportView(model);
+        jScrollPane1.setViewportView(mytable);
 
         jLabel2.setText("Enter Equipment ID");
 
@@ -141,29 +144,13 @@ public class borrowEquipment extends javax.swing.JFrame {
         try
         {
             myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
-            myStmt=myConn.createStatement();
+            //myStmt=myConn.createStatement();
             String query="select equip_id,EquipName,address,rentamt,status from equipment";
-            myRs=myStmt.executeQuery(query);
-            //String[] columnNames = {"Equipment id", "Equipment Name", "Address", "Rent Fee","Status"};
-            JTable table = new JTable();
-            //DefaultTableModel model = ((DefaultTableModel) table.getModel());
-
-            DefaultTableModel model=new DefaultTableModel();
-            //model.setColumnIdentifiers(columnNames);
-             
-             table.setModel(model); 
-             
-
-            while(myRs.next())
-            {
-              
-                 model.addRow(new Object[]{myRs.getString("equip_id"), myRs.getString("EquipName"),myRs.getString("address"),
-                 myRs.getString("rentamt"),myRs.getString("status")});
-                
-            }
             
-            
-            //show message box : "Equipment Added Successfully" 
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            mytable.setModel(DbUtils.resultSetToTableModel(rs));
+
             
         }
         catch(Exception exc){
@@ -238,7 +225,7 @@ public class borrowEquipment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable model;
+    private javax.swing.JTable mytable;
     private javax.swing.JButton showtabledata;
     // End of variables declaration//GEN-END:variables
 }

@@ -35,7 +35,6 @@ primary key(event_id),
 foreign key(event_id) references Event(event_id),
 foreign key(user_id) references User(user_id));
 
-
 create table Tournament(
 tour_id int auto_increment primary key,
 noOfTeams int,
@@ -75,25 +74,6 @@ primary key(equip_id),
 foreign key(userid_owner) references User(user_id),
 foreign key(userid_rentee) references User(user_id));
 
-SOME CHANGES; EXECUTE THESE.
->>alter table Event add user_id int;
->>alter table event add constraint foreign key(user_id) references user(user_id);
->>alter table Tournament add tour_sport varchar(50);
->>drop table Event_creator;
->>alter table tournament modify tour_time varchar(100);
->>alter table tournament modify tour_date varchar(100);
->>alter table tournament modify entryFee decimal(10,2);
->>alter table tournament add tour_owner varchar(100);
->>alter table tournament add constraint foreign key(tour_owner) references user(user_id);
-
-create table Event_User(
-event_id int,
-user_id int,
-status int,
-primary key(event_id, user_id),
-foreign key(event_id) references Event(event_id),
-foreign key(user_id) references User(user_id));
-
 
 #Will look into payments later
 create table payment(
@@ -101,9 +81,21 @@ type_of_payment varchar(20),
 amount numeric(5,2)
 )
 
-https://github.com/sectool/PassBox/tree/master/src
-https://github.com/Indirk/Cafe-Management-System/blob/master/CaffeManagementSystem/CoffeMSystem/src/Indir/sqliteConnection.java
-(Common sql class)
+
+alter table user add gender varchar(15);
+
+alter table user delete height;
+alter table user add height_in_feet int;
+alter table user add height_in_inches int;
 
 
 
+
+alter table user drop column password;
+
+
+alter table user add password varchar(100);
+
+alter table user drop column event_id;
+
+alter table user drop column dob;

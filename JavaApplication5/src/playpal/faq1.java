@@ -7,6 +7,7 @@
  *
  * @author MAHE
  */
+package playpal;
 public class faq1 extends javax.swing.JFrame {
 
     /**

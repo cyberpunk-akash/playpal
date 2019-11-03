@@ -7,6 +7,7 @@
  *
  * @author MAHE
  */
+package playpal;
 public class Equipment extends javax.swing.JFrame {
 
     /**

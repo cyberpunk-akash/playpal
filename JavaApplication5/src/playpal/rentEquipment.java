@@ -7,8 +7,10 @@
  *
  * @author MAHE
  */
+package playpal;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import static playpal.dashboard.userid;
 public class rentEquipment extends javax.swing.JFrame {
 
     /**
@@ -158,7 +160,8 @@ public class rentEquipment extends javax.swing.JFrame {
             String equipaddr=Addrs.getText();
             String rentfee=Equipmentfee.getText();
             String estatus=Equipmentstatus.getText();
-            myStmt.executeUpdate("Insert into equipment(EquipName,address,rentamt,status) values('"+equip+"','"+equipaddr+"','"+rentfee+"','"+estatus+"')");
+            myStmt.executeUpdate("Insert into equipment(EquipName,address,rentamt,status,userid_owner) "
+                    + "values('"+equip+"','"+equipaddr+"','"+rentfee+"','"+estatus+"',"+userid+")");
             
              JOptionPane.showMessageDialog(null, "Equipment added succesfully!");
             //show message box : "Equipment Added Successfully" 

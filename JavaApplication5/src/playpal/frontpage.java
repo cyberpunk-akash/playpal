@@ -42,6 +42,11 @@ public class frontpage extends javax.swing.JFrame {
         });
 
         button2.setLabel("Register");
+        button2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button2ActionPerformed(evt);
+            }
+        });
 
         panel1.setForeground(new java.awt.Color(231, 123, 11));
 
@@ -96,13 +101,16 @@ public class frontpage extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
               // TODO add your handling code here:
+              new login().setVisible(true);
+              dispose();
 
-            dashboard dashB= new dashboard();
-            dashB.setVisible(true);
-            dispose();
-
-              
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
+        // TODO add your handling code here:
+        new registration().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_button2ActionPerformed
 
     /**
      * @param args the command line arguments

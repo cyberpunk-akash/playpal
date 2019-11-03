@@ -14,10 +14,13 @@ public class dashboard extends javax.swing.JFrame{
     /**
      * Creates new form dashboard
      */
-    public static int userid=2;
+    public static int userid;
     
-    public dashboard() {
+    public dashboard(int id) {
         initComponents();
+        userid = id;
+        System.out.println(userid);
+        //System.out.println(userid);
         //Extract user id from login module
     }
 
@@ -81,6 +84,11 @@ public class dashboard extends javax.swing.JFrame{
         });
 
         button6.setLabel("FAQ");
+        button6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button6ActionPerformed(evt);
+            }
+        });
 
         label1.setText("label1");
 
@@ -104,6 +112,11 @@ public class dashboard extends javax.swing.JFrame{
         );
 
         button7.setLabel("View Profile");
+        button7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,6 +212,16 @@ public class dashboard extends javax.swing.JFrame{
         
     }//GEN-LAST:event_button4ActionPerformed
 
+    private void button6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6ActionPerformed
+        // TODO add your handling code here:
+         new Chatbot().setVisible(true);  
+    }//GEN-LAST:event_button6ActionPerformed
+
+    private void button7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button7ActionPerformed
+        // TODO add your handling code here:
+        new userprofile().setVisible(true);   
+    }//GEN-LAST:event_button7ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -230,7 +253,7 @@ public class dashboard extends javax.swing.JFrame{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new dashboard().setVisible(true);
+                new dashboard(0).setVisible(true);
             }
         });
     }

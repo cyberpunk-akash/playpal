@@ -18,15 +18,15 @@ import static playpal.dashboard.userid;
  *
  * @author MAHE
  */
-public class userprofile extends javax.swing.JFrame {
+public class userprofile extends javax.swing.JFrame{
 
     /**
      * Creates new form userprofile
      */
-    int userid;
-    public userprofile(int name) {
+    
+    public userprofile() {
         initComponents();
-        userid = name;
+
     }
 
     /**
@@ -97,7 +97,7 @@ public class userprofile extends javax.swing.JFrame {
         Statement myStmt=null;
         ResultSet myRs= null;
         String user="root";
-        String pass="mypass";
+        String pass="kent";
         try
         {
             myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
@@ -108,6 +108,9 @@ public class userprofile extends javax.swing.JFrame {
             PreparedStatement ps = myConn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             jTable1.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
            
         }
         catch(Exception exc){
@@ -145,7 +148,7 @@ public class userprofile extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new userprofile(0).setVisible(true);
+                new userprofile().setVisible(true);
             }
         });
     }

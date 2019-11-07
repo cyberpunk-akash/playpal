@@ -217,7 +217,7 @@ public class borrowEquipment extends javax.swing.JFrame {
         {
             myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
             //myStmt=myConn.createStatement();
-            String query="select equip_id,EquipName,address,rentamt,status from equipment";
+            String query="select equip_id,EquipName,address,rentamt,status,description from equipment";
             
             PreparedStatement ps = myConn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
@@ -245,7 +245,7 @@ public class borrowEquipment extends javax.swing.JFrame {
             borrowid.setText("");
 
             System.out.println(bid);
-            String query="delete from equipment where equip_id="+bid;
+            String query="update equipment set status='unavailable' where equip_id="+bid;
             myStmt.executeUpdate(query);
         }
         catch(Exception exc){

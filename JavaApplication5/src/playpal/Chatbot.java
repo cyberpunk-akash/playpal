@@ -36,12 +36,13 @@ public class Chatbot extends JFrame implements KeyListener{
 	// 	{"shut up","you're bad","noob","stop talking",
 	// 	"(michael is unavailable, due to LOL)"}
 	// };
-	String initialReply = "Hi! I am PlayPal. How may I be of assistance today? \n \tPlease choose the number of the query you would like to know more about.\n" + 
-						"\t1] What is PlayPal?\n" + 
-						"\t2] What is an event?\n" + 
-						"\t3] What is a tourament?\n" + 
-						"\t4] What does the Equipments tab entail?\n" + 
-						"\t5] What is there in the User Profile?\n";
+	String initialReply = "Hi! I am PlayPal. What would you like to know more about? \n \tPlease choose the number of the query you would like to know more about.\n" + 
+						"\t1] About PlayPal\n" + 
+						"\t2] Events\n" + 
+						"\t3] Tournaments\n" + 
+						"\t4] Equipments\n" + 
+						"\t5] User Profile\n"+
+                                                "\t6] Other";
 
 	String[][] chatBot={
 
@@ -58,22 +59,40 @@ public class Chatbot extends JFrame implements KeyListener{
 	"\t promote outdoor activities. PlayPal aims to connect sports and fitness \n" + " \tenthusiasts."},
 
 	{"2"},
-	{"An event can be created by any user who is logged in. The user will\n"+"\t mention the type of sports and date on which he plans to play and \n" + "\t other users can view the event and decide if they want to participate or not."},
+	{"An event can be created by any user who is logged in. The user will\n"+"\t mention the type of sports and date on which he plans to play and \n" + "\t other users can view the event and decide if they want to participate or not.\n"+"Some people also ask:-(Please enter query number) \n"+"e1]Are there any restrictions to participate in an event?\n"},
 
 	{"3"},
 	{"Tournaments can be created by any user who is logged in. If a user \n " + " \t wishes to participate in some other tournament, he can do so by paying \n" + 
-	"\t the participation fee, if there is one, and can also win the prize amount."},
+	"\t the participation fee, if there is one, and can also win the prize amount.\n"+"Do you have more questions?(Please enter the query number)\n"+"t1]Is there money refund option if I dont attend the tournament?\n"},
 
 	{"4"},
-	{"Equipments can be borrowed or rented. A logged in user can put up\n" + "\t equipments like bat, football, etc., for other people to rent and will receive\n" + "\ta small fee for it. Other logged in users can view these equipments \n" + "\t and use them after renting them."},
+	{"Equipments can be borrowed or rented. A logged in user can put up\n" + "\t equipments like bat, football, etc., for other people to rent and will receive\n" +
+                "\ta small fee for it. Other logged in users can view these equipments \n" + "\t and use them after renting them.\n"+
+                "Do you have any more questions(Please enter the query number)\n"+"q1]My equipment was not returned to me.What do I do?\n"+
+                "q2]My equipment was returned damaged.What do I do?\n"},
 
 	{"5"},
-	{"User profile shows the user his details like name, age, Body Mass Index \n" + "\t (BMI) and events and tournaments created and participated by the user."},
-
+	{"User profile shows the user his details like name, age, Body Mass Index \n" + "\t (BMI) and events and tournaments created and participated by the user.\n"+"Do you have more questions?(Please select query number)\n u1]What is BMI?\n"},
+        {"6"},
+	{"To know more you can mail us at playpalhdtk0707@gmail.com!\n"},
+        
+        {"e1"},
+	{"To be able to participate in an event you must be within \nthe required age limit\n"},
+        
+        {"t1"},
+	{"No. There is no refund option. After confirming a seat it is\n it is expected that you participate!"},
+        
 	{"thank you","Thanks for your help!","thank u"},
 	{"It was a pleasure helping you. Hope you have fun using PlayPal."},
+        
+        {"q1"},
+	{"Sorry to hear that you had to face this issue! :( Don't worry we got you.\n Write your complaint to us at playpalhkdt0707@gmail.com and we\n shall investigate"},
 
-
+        {"q2"},
+	{"Sorry to hear that you had to face this issue! :( \nPlayPal is not responsible for damage to any equipment borrowed or rented\n"+
+                " but we can surely get you in touch with your rentee\n"+"Write to us at playpalhkdt0707@gmail.com."},
+        {"u1"},
+	{"Body Mass Index (BMI) is a measurement of a person’s weight with \n respect to his or her height. It is more of an indicator than a direct measurement\n of a person’s total body fat."},
 
 	{"Sorry, I didn't get you. Could you please repeat that?"}
 

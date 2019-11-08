@@ -7,7 +7,9 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import net.proteanit.sql.DbUtils;
+import static playpal.dashboard.userid;
 
 
 
@@ -23,6 +25,7 @@ import net.proteanit.sql.DbUtils;
  */
 public class borrowEquipment extends javax.swing.JFrame {
  int bid;
+ float balance,balance1,uo,rentamt;
     /**
      * Creates new form borrowEquipment
      */
@@ -217,8 +220,8 @@ public class borrowEquipment extends javax.swing.JFrame {
         {
             myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
             //myStmt=myConn.createStatement();
-            String query="select equip_id,EquipName,address,rentamt,status,description from equipment";
-            
+            String query="select equip_id,EquipName,address,rentamt,status,description from equipment "
+                    + "where userid_owner<>"+userid+" and status<>'unavailable'";
             PreparedStatement ps = myConn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             mytable.setModel(DbUtils.resultSetToTableModel(rs));
@@ -236,6 +239,7 @@ public class borrowEquipment extends javax.swing.JFrame {
          Connection myConn=null;
         Statement myStmt=null;
         ResultSet myRs= null;
+        ResultSet myRs2 = null;
         String user="root";
         String pass="kent";
         try{
@@ -243,11 +247,51 @@ public class borrowEquipment extends javax.swing.JFrame {
             myStmt=myConn.createStatement();
             bid=Integer.valueOf(borrowid.getText());
             borrowid.setText("");
-
-            System.out.println(bid);
-            String query="update equipment set status='unavailable' where equip_id="+bid;
+            int result = JOptionPane.showConfirmDialog(null,"Are you sure that you want to rent the equipment"
+                    +"? The price amount will be deducted from your Playpal wallet","",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+if(result == JOptionPane.YES_OPTION){
+               //System.out.print("Yippe");
+            String query1="SELECT balance from user where user_id='"+userid+"'";
+            myRs=myStmt.executeQuery(query1);
+            while(myRs.next())
+            {
+                balance=Float.parseFloat(myRs.getString("balance"));
+                //JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
+            }
+            String query2="select rentamt from equipment where equip_id="+bid;
+            myRs2=myStmt.executeQuery(query2);
+            while(myRs2.next())
+            {
+                
+                rentamt=Float.parseFloat(myRs2.getString("rentamt"));
+                //tour_owner =Integer.parseInt(myRs2.getString("tour_owner"));
+                
+            }
+            if(balance-rentamt<0)
+            {
+                JOptionPane.showMessageDialog(null,"We're sorry. You don't have enough money in wallet");
+            }
+            else
+            {
+            myStmt.executeUpdate("update user set balance="+(balance-rentamt)+"where user_id="+userid);
+            String query3="SELECT balance,user_id from user where user_id=(select userid_owner as uo from equipment where equip_id="+bid+")";
+            myRs=myStmt.executeQuery(query3);
+            while(myRs.next())
+            {
+                balance1=Float.parseFloat(myRs.getString("balance"));
+                uo=Integer.parseInt(myRs.getString("user_id"));
+                //JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
+            }
+            
+            myStmt.executeUpdate("update user set balance="+(balance1+rentamt)+"where user_id="+uo);
+           JOptionPane.showMessageDialog(null,"Your request has been approved. You will receive the equipment soon.");
+            
+            String query="update equipment set status='unavailable',userid_rentee="+userid+" where equip_id="+bid;
             myStmt.executeUpdate(query);
+            }
+            
         }
+       }
         catch(Exception exc){
             exc.printStackTrace();
         }

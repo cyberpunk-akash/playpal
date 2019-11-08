@@ -235,6 +235,7 @@ public static int userid;
                    if(extusrname.equals(entered_user) && extpass.equals(hashed_pw1)){
                       // JOptionPane.showMessageDialog(null,"Login successfull");
                       flag = 1;
+                      break;
 
                    }
                    else{
@@ -261,7 +262,7 @@ catch (Exception exc){
         
         
         
-        
+        dispose();
         
         
         

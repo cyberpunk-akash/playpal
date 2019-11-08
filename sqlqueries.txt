@@ -100,3 +100,11 @@ alter table user drop event_id;
 >>alter table tournament add tour_owner varchar(100);
 >>alter table tournament add constraint foreign key(tour_owner) references user(user_id);
 alter table user drop dob;
+alter table user add balance numeric(10,2);
+alter table tournament modify tour_owner int;
+alter table equipment add description varchar(255);
+
+select * from tournament where tour_id not in (select tour_id from tourn_participation where user_id=3);
+select equip_id,EquipName,address,rentamt,status,description from equipment where userid_owner<>3 and status<>'unavailable';
+
+"SELECT balance from user where user_id=(select userid_owner from equipment where equip_id="+bid+")";

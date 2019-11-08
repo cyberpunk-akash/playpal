@@ -21,7 +21,10 @@ public class ViewTournament extends javax.swing.JFrame{
 
     /**
      * Creates new form ViewTournament
-     */
+     */Float balance,entryFee,balance1;
+     int tour_owner;
+     
+    
     public ViewTournament() {
         Connection myConn = null;
         Statement myStmt = null;
@@ -39,32 +42,61 @@ public class ViewTournament extends javax.swing.JFrame{
                 
             //JOptionPane.showMessageDialog(null, text.substring(5));
             int result = JOptionPane.showConfirmDialog(null,"Are you sure that you want to participate in "
-                    +text.substring(5)+"?", "",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    +text.substring(5)+"? The price amount will be deducted from your wallet", "",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             
             if(result == JOptionPane.YES_OPTION){
                //System.out.print("Yippe");
+               
           try 
            {
                 Connection myConn = null;
                 Statement myStmt = null;
                 ResultSet myRs = null;
+                ResultSet myRs1 = null;
+                ResultSet myRs2 = null;
                 int tour_id=0;
                 String tour_name=text.substring(5);
                 String user = "root";
                 String pass = "kent";
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/playpal_db", user, pass);
             myStmt = myConn.createStatement();
-            String query1="SELECT tour_id from tournament where tour_name='"+tour_name+"'";
+             String query1="SELECT balance from user where user_id='"+userid+"'";
             myRs=myStmt.executeQuery(query1);
             while(myRs.next())
             {
-                tour_id=Integer.parseInt(myRs.getString("tour_id"));
-                JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
+                balance=Float.parseFloat(myRs.getString("balance"));
+                //JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
             }
+            
+            
+            String query2="SELECT tour_id,entryFee,tour_owner from tournament where tour_name='"+tour_name+"'";
+            myRs2=myStmt.executeQuery(query2);
+            while(myRs2.next())
+            {
+                tour_id=Integer.parseInt(myRs2.getString("tour_id"));
+                entryFee=Float.parseFloat(myRs2.getString("entryFee"));
+                tour_owner =Integer.parseInt(myRs2.getString("tour_owner"));
+                
+            }
+             if(balance-entryFee<0)
+            {
+                JOptionPane.showMessageDialog(null,"We're sorry. You don't have enough money in wallet");
+            }
+                else{
             myStmt.executeUpdate("INSERT INTO tourn_participation(tour_id,user_id) VALUES("
                         +tour_id+","+userid+")");
+            myStmt.executeUpdate("update user set balance="+(balance-entryFee)+"where user_id="+userid);
+            String query3="SELECT balance from user where user_id="+tour_owner;
+            myRs=myStmt.executeQuery(query3);
+            while(myRs.next())
+            {
+                balance1=Float.parseFloat(myRs.getString("balance"));
+                //JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
+            }
             
-            
+            myStmt.executeUpdate("update user set balance="+(balance1+entryFee)+"where user_id="+tour_owner);
+           JOptionPane.showMessageDialog(null,"Congrats, your participation is confirmed!");
+             }
         }
           catch (Exception exc){
             exc.printStackTrace();
@@ -80,7 +112,7 @@ public class ViewTournament extends javax.swing.JFrame{
         
         try 
            {
-               ResultSet myRs1 = null;
+            ResultSet myRs1 = null;
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/playpal_db", user, pass);
             myStmt = myConn.createStatement();
             query="SELECT count(tour_id) as c from tournament";
@@ -93,7 +125,8 @@ public class ViewTournament extends javax.swing.JFrame{
             
             JTextArea tourn[]= new JTextArea[count];
             JButton participate[]= new JButton[count];
-            query="SELECT * from tournament;";
+            query="select * from tournament where tour_id not in "
+                    + "(select tour_id from tourn_participation where user_id="+userid+");";
             myRs1=myStmt.executeQuery(query);
             int i=0;
             while(myRs1.next())
@@ -101,8 +134,8 @@ public class ViewTournament extends javax.swing.JFrame{
                String tour_name=myRs1.getString("tour_name");
                tourn[i]= new JTextArea();
                participate[i]=new JButton("JOIN "+tour_name);
-               tourn[i].setBounds(10,30+i*170,300,150);
-               participate[i].setBounds(350,80+i*170,150,50);
+               tourn[i].setBounds(60,80+i*170,300,150);
+               participate[i].setBounds(400,130+i*170,150,50);
                participate[i].addActionListener(listener);
                this.add(tourn[i]);
                this.add(participate[i]);

@@ -60,8 +60,8 @@ public class registration extends javax.swing.JFrame {
         txtemail = new java.awt.TextField();
         txtage = new java.awt.TextField();
         txtweight = new java.awt.TextField();
-        jComboBox1 = new javax.swing.JComboBox<String>();
-        jComboBox2 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         label12 = new java.awt.Label();
         label13 = new java.awt.Label();
         txtusername = new java.awt.TextField();
@@ -113,9 +113,9 @@ public class registration extends javax.swing.JFrame {
         btntandc.setBackground(new java.awt.Color(255, 255, 255));
         btntandc.setLabel("Terms and Conditions");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
 
         label12.setBackground(new java.awt.Color(255, 255, 255));
         label12.setText("Feet");
@@ -192,6 +192,11 @@ public class registration extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setText("LOGIN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 36)); // NOI18N
         jLabel2.setText("REGISTRATION");
@@ -475,8 +480,8 @@ public class registration extends javax.swing.JFrame {
             }
 
             if(password1.equals(password2) && checkbox1.getState()){
-                myStmt.executeUpdate("INSERT INTO user(name,age,email,address,weight,username,gender,height_in_feet,height_in_inches,password,bmi) VALUES ('"+name+"',"+age+",'"+email+"','"+address+"','"+weight+"','"+username+"',"
-                    + "'"+gender1+"',"+heightfeet+","+heightinches+",'"+hashed_pw+"',"+bmi+");");
+                myStmt.executeUpdate("INSERT INTO user(name,age,email,address,weight,username,gender,height_in_feet,height_in_inches,password,bmi,balance) VALUES ('"+name+"',"+age+",'"+email+"','"+address+"','"+weight+"','"+username+"',"
+                    + "'"+gender1+"',"+heightfeet+","+heightinches+",'"+hashed_pw+"',"+bmi+",0);");
 
                 new login().setVisible(true);
 
@@ -491,14 +496,15 @@ public class registration extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnsubmitregActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
-        
-      
+
       JFrame frame = new JFrame();
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       //frame.setPreferredSize(new Dimension(550, 300));

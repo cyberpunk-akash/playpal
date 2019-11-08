@@ -41,7 +41,7 @@ public class Chatbot extends JFrame implements KeyListener{
 						"\t2] Events\n" + 
 						"\t3] Tournaments\n" + 
 						"\t4] Equipments\n" + 
-						"\t5] User Profile\n"+
+						"\t5] user Profile\n"+
                                                 "\t6] Other";
 
 	String[][] chatBot={
@@ -72,7 +72,7 @@ public class Chatbot extends JFrame implements KeyListener{
                 "q2]My equipment was returned damaged.What do I do?\n"},
 
 	{"5"},
-	{"User profile shows the user his details like name, age, Body Mass Index \n" + "\t (BMI) and events and tournaments created and participated by the user.\n"+"Do you have more questions?(Please select query number)\n u1]What is BMI?\n"},
+	{"user profile shows the user his details like name, age, Body Mass Index \n" + "\t (BMI) and events and tournaments created and participated by the user.\n"+"Do you have more questions?(Please select query number)\n u1]What is BMI?\n"},
         {"6"},
 	{"To know more you can mail us at playpalhdtk0707@gmail.com!\n"},
         

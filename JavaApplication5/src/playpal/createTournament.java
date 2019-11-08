@@ -144,6 +144,11 @@ public class createTournament extends javax.swing.JFrame {
         jSeparator12.setBackground(new java.awt.Color(204, 153, 0));
 
         jButton2.setText("DASHBOARD");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -362,6 +367,13 @@ public class createTournament extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_datesActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+        // TODO add your handling code here:
+        new dashboard(userid).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -403,6 +415,7 @@ public class createTournament extends javax.swing.JFrame {
     private javax.swing.JTextField entry_fee;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

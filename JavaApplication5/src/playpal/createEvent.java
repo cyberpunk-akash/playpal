@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Properties;
 import static playpal.dashboard.userid;
-
+import playpal.scrape;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -27,12 +27,17 @@ import javax.mail.internet.MimeMessage;
  * @author MAHE
  */
 import static playpal.dashboard.userid;
+import static playpal.login.userid;
 public class createEvent extends javax.swing.JFrame {
+
+    createEvent() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     /**
      * Creates new form createEvent
      */
-    public void sendUserEmail(){
+    public void senduserEmail(String email){
     final String username = "playpalhdtk0707@gmail.com";
         final String password = "playpalhdtk!%";
 
@@ -55,22 +60,21 @@ public class createEvent extends javax.swing.JFrame {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("playpalhdtk@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
-                InternetAddress.parse("a97tulsani@gmail.com"));
-            message.setSubject("New PlayPal Message");
-            message.setText("hello User,"
-                + "\n\n Hello From PlayPal!");
+                InternetAddress.parse(email));
+            message.setSubject("event");
+            message.setText("hello user,"
+                + "\n\n Theres an event happening near you!");
 
             Transport.send(message);
-
-            System.out.println("Done");
-
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }}
+    public static int userid;
     
-    public createEvent() {
+    public createEvent(int id) {
         initComponents();
-        System.out.println(userid);
+        userid = id;
+       // System.out.println(userid);
     }
 
     
@@ -98,7 +102,7 @@ public class createEvent extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
-        button1 = new java.awt.Button();
+        jButton4 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
@@ -146,10 +150,10 @@ public class createEvent extends javax.swing.JFrame {
 
         jSeparator4.setBackground(new java.awt.Color(51, 153, 0));
 
-        button1.setLabel("Dashboard");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("DASHBOARD");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -198,8 +202,8 @@ public class createEvent extends javax.swing.JFrame {
                                 .addComponent(jButton1)))
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                        .addComponent(jButton4)
+                        .addGap(65, 65, 65))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,8 +237,8 @@ public class createEvent extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addComponent(jButton4)
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(0, 0, 0));
@@ -281,13 +285,13 @@ public class createEvent extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        sendUserEmail();
+        // senduserEmail();
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
         
         String user = "root";
-        String pass = "kent";
+        String pass = "mypass";
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/playpal_db", user, pass);
             // 2. Create a statement
@@ -308,18 +312,50 @@ public class createEvent extends javax.swing.JFrame {
             String date=date1.toString();
             LocalTime time1 = LocalTime.now();
             String time=time1.toString();
+       
+            double longi = scrape.longi;
+            double lati = scrape.lati;
             
-            //System.out.println(myObj);
-            myStmt.executeUpdate("INSERT INTO event(event_name,sport,ageLimit,venue,time,date, user_id) VALUES('"+eventName+"','"+sport+"',"+ageLimit+
-                    ",'"+venue+"','"+time+"','"+date+"',"+userid+")");
+            String query = "select user_id, latitude, longitude, email from user";
+            String username, email;
+            double latitude, longitude;
             
-            
-            JFrame parent = new JFrame();
-            JOptionPane.showMessageDialog(parent, "Event is registered!");
-            dispose();
-            
-        }
-        catch (Exception exc){
+            myRs = myStmt.executeQuery(query);
+            try {
+               while (myRs.next())
+               {
+                   username = myRs.getString("user_id");
+                   email = myRs.getString("email");
+                   
+                   String lattt = myRs.getString("latitude");
+                   String longg = myRs.getString("longitude");
+                   
+                   latitude = Double.parseDouble(lattt);
+                   longitude = Double.parseDouble(longg);
+                   
+                    latitude = Math.toRadians(latitude); 
+                    lati = Math.toRadians(lati); 
+                    longitude = Math.toRadians(longitude); 
+                    longi = Math.toRadians(longi); 
+        
+                     //haversine formula
+                    double dlon = longi - longitude;  
+                    double dlat = lati - latitude; 
+        
+                    double a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(latitude) * Math.cos(lati) * Math.pow(Math.sin(dlon / 2),2); 
+        
+                    double distance = 2 * Math.asin(Math.sqrt(a)) * 6371;
+                    
+                    if(distance > 8300.0 && userid != Integer.parseInt(username))
+                        senduserEmail(email);
+                }
+               
+               
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }  
+        }catch (Exception exc){
             exc.printStackTrace();
         }
         
@@ -331,12 +367,11 @@ public class createEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_event_nameActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-             // TODO add your handling code here:
-        dashboard d=new dashboard();
-        d.setVisible(true);
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new dashboard(userid).setVisible(true);
         dispose();
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,16 +403,16 @@ public class createEvent extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new createEvent().setVisible(true);
+                new createEvent(0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField age_limit;
-    private java.awt.Button button1;
     private javax.swing.JTextField event_name;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

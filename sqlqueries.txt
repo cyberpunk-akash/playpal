@@ -1,17 +1,6 @@
 create database playpal_db;
 use playpal_db;
 
-create table Event(
-event_id int auto_increment primary key,
-event_name varchar(100) NOT NULL UNIQUE,
-sport varchar(100),
-ageLimit int,
-venue varchar(255),
-time time,
-date date,
-noOfParticipants int);
-
-
 create table User(
 user_id int auto_increment primary key,
 name varchar(30) NOT NULL,
@@ -23,10 +12,17 @@ weight numeric(5,2),
 height int,
 username varchar(20) NOT NULL UNIQUE,
 password varchar(20) NOT NULL,
-bmi numeric(4,2),
-event_id int,
-foreign key(event_id) references Event(event_id));
+bmi numeric(4,2));
 
+create table Event(
+event_id int auto_increment primary key,
+event_name varchar(100) NOT NULL UNIQUE,
+sport varchar(100),
+ageLimit int,
+venue varchar(255),
+time time,
+date date,
+noOfParticipants int);
 
 create table Event_creator(
 event_id int,
@@ -47,18 +43,11 @@ tour_date varchar(20),
 tour_noOfParticipants int);
 
 
-create table Team(
-team_id int auto_increment primary key,
-noOfPlayers int,
-teamName varchar(50));
-
 create table tourn_participation(
 user_id int,
 tour_id int,
-team_id int,
 foreign key(user_id) references User(user_id),
 foreign key(tour_id) references Tournament(tour_id),
-foreign key(team_id) references Team(team_id),
 primary key(user_id, tour_id));
 
 
@@ -75,36 +64,27 @@ foreign key(userid_owner) references User(user_id),
 foreign key(userid_rentee) references User(user_id));
 
 
-#Will look into payments later
-create table payment(
-type_of_payment varchar(20),
-amount numeric(5,2)
-)
-
-NEW QUERIES:
+NEW EDIT QUERIES:
 
 alter table user add gender varchar(15);
 alter table user drop height;
 alter table user add height_in_feet int;
 alter table user add height_in_inches int;
-alter table user drop column password;
+alter table user drop password;
 alter table user add password varchar(100);
 alter table user drop event_id;
->>alter table Event add user_id int;
->>alter table event add constraint foreign key(user_id) references user(user_id);
->>alter table Tournament add tour_sport varchar(50);
->>drop table Event_creator;
->>alter table tournament modify tour_time varchar(100);
->>alter table tournament modify tour_date varchar(100);
->>alter table tournament modify entryFee decimal(10,2);
->>alter table tournament add tour_owner varchar(100);
->>alter table tournament add constraint foreign key(tour_owner) references user(user_id);
+alter table Event add user_id int;
+alter table event add constraint foreign key(user_id) references user(user_id);
+alter table Tournament add tour_sport varchar(50);
+alter table tournament modify tour_time varchar(100);
+alter table tournament modify tour_date varchar(100);
+alter table tournament modify entryFee decimal(10,2);
+alter table tournament add constraint foreign key(tour_owner) references user(user_id);
 alter table user drop dob;
 alter table user add balance numeric(10,2);
-alter table tournament modify tour_owner int;
+alter table tournament add tour_owner int;
 alter table equipment add description varchar(255);
+alter table user add latitude 
+alter table user add longitude
 
-select * from tournament where tour_id not in (select tour_id from tourn_participation where user_id=3);
-select equip_id,EquipName,address,rentamt,status,description from equipment where userid_owner<>3 and status<>'unavailable';
 
-"SELECT balance from user where user_id=(select userid_owner from equipment where equip_id="+bid+")";

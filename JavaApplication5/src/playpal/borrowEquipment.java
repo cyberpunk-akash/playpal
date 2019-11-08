@@ -101,6 +101,11 @@ public class borrowEquipment extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
 
         jButton3.setText("DASHBOARD");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,8 +254,8 @@ public class borrowEquipment extends javax.swing.JFrame {
             borrowid.setText("");
 
             System.out.println(bid);
-            String q1="insert into equipment(userid_rentee) values("+userid+");";
-            myStmt.executeUpdate(q1);
+            //String q1="insert into equipment(userid_rentee) values("+userid+");";
+            //myStmt.executeUpdate(q1);
             //String query="update equipment set status='unavailable' where equip_id="+bid;
 
             int result = JOptionPane.showConfirmDialog(null,"Are you sure that you want to rent the equipment"
@@ -306,6 +311,12 @@ if(result == JOptionPane.YES_OPTION){
         
         
     }//GEN-LAST:event_BorrwActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        new dashboard(userid).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

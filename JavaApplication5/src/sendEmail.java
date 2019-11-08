@@ -49,7 +49,7 @@ public class sendEmail {
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse("a97tulsani@gmail.com"));
             message.setSubject("New PlayPal Message");
-            message.setText("hello User,"
+            message.setText("hello user,"
                 + "\n\n Hello From PlayPal!");
 
             Transport.send(message);

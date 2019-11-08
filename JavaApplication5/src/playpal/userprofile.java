@@ -82,6 +82,11 @@ public class userprofile extends javax.swing.JFrame{
         jLabel7.setText("What your BMI means..");
 
         jButton2.setText("DASHBOARD");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -469,9 +474,6 @@ public class userprofile extends javax.swing.JFrame{
             PreparedStatement ps = myConn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             jTable3.setModel(DbUtils.resultSetToTableModel(rs));
-            
-            //"select event_name from event where user_id="+userid;
-            
            
         }
         catch(Exception exc){
@@ -505,6 +507,12 @@ public class userprofile extends javax.swing.JFrame{
             exc.printStackTrace();
         }
     }//GEN-LAST:event_view_created_tourActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new dashboard(userid).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

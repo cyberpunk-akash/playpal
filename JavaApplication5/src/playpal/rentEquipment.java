@@ -119,6 +119,11 @@ public class rentEquipment extends javax.swing.JFrame {
         jSeparator5.setBackground(new java.awt.Color(204, 0, 51));
 
         jButton3.setText("DASHBOARD");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -280,6 +285,12 @@ public class rentEquipment extends javax.swing.JFrame {
     private void EquipmentstatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipmentstatusActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EquipmentstatusActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        new dashboard(userid).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

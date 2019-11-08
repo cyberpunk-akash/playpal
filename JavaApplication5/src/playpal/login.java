@@ -73,7 +73,7 @@ public static int userid;
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        label2.setText("Username");
+        label2.setText("username");
 
         label3.setText("Password");
 
@@ -203,21 +203,18 @@ public static int userid;
         String entered_user = txtusernamelogin.getText();
         String entered_pass = txtpasswordlogin.getText();
         
-        
+        //System.out.println(entered_user);
         
         String hashed_pw1;
         
         try{
             hashed_pw1 = hashPassword(entered_pass);
+            //System.out.println("Hashed password="+hashed_pw1);
         }
         catch(NoSuchAlgorithmException e){
             hashed_pw1="";
         }
         
-        
-        
-        
-       
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/playpal_db", user, pass);
                         myStmt = myConn.createStatement();
@@ -228,12 +225,15 @@ public static int userid;
                myRs = myStmt.executeQuery(query);
                while (myRs.next())
                {
+                   //System.out.println("Here1");
                    extusrname = myRs.getString("username");
+                   //System.out.println("Username="+extusrname);
                    extpass = myRs.getString("password");
-                   userid = Integer.parseInt(myRs.getString("user_id"));
                    
+                   userid = Integer.parseInt(myRs.getString("user_id"));
+                   //System.out.println("User id="+userid);
                    if(extusrname.equals(entered_user) && extpass.equals(hashed_pw1)){
-                      // JOptionPane.showMessageDialog(null,"Login successfull");
+                      //JOptionPane.showMessageDialog(null,"Login successfull");
                       flag = 1;
                       break;
 
@@ -241,7 +241,7 @@ public static int userid;
                    else{
                         //JOptionPane.showMessageDialog(null,"Wrong Credentials");
                         flag = 0;
-
+                        
                    }   
                }
         }
@@ -251,7 +251,7 @@ catch (Exception exc){
         
         if (flag == 0){ 
         JOptionPane.showMessageDialog(null,"Wrong Credentials");
-        
+       
         }
         
         if (flag == 1){

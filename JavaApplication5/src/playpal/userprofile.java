@@ -53,8 +53,14 @@ public class userprofile extends javax.swing.JFrame{
         button1 = new java.awt.Button();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
+        view_participated_events = new javax.swing.JButton();
+        view_created_events = new javax.swing.JButton();
+        view_created_tour = new javax.swing.JButton();
+        view_participated_tour = new javax.swing.JButton();
+        view_rented = new javax.swing.JButton();
+        view_borrowed = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -93,7 +99,7 @@ public class userprofile extends javax.swing.JFrame{
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(284, 284, 284)
                         .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2)
@@ -114,27 +120,26 @@ public class userprofile extends javax.swing.JFrame{
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -165,7 +170,7 @@ public class userprofile extends javax.swing.JFrame{
 
         jSeparator1.setBackground(new java.awt.Color(255, 153, 51));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -173,32 +178,87 @@ public class userprofile extends javax.swing.JFrame{
                 {null, null, null, null}
             },
             new String [] {
-                "", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane3.setViewportView(jTable3);
+
+        view_participated_events.setText("VIEW PARTICIPATED EVENTS");
+        view_participated_events.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_participated_eventsActionPerformed(evt);
+            }
+        });
+
+        view_created_events.setText("VIEW CREATED EVENTS");
+        view_created_events.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_created_eventsActionPerformed(evt);
+            }
+        });
+
+        view_created_tour.setText("VIEW CREATED TOURNAMENTS");
+        view_created_tour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_created_tourActionPerformed(evt);
+            }
+        });
+
+        view_participated_tour.setText("VIEW PARTICIPATED TOURNAMENTS");
+        view_participated_tour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_participated_tourActionPerformed(evt);
+            }
+        });
+
+        view_rented.setText("VIEW RENTED EQUIPMENTS");
+        view_rented.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_rentedActionPerformed(evt);
+            }
+        });
+
+        view_borrowed.setText("VIEW BORROWED EQUIPMENTS");
+        view_borrowed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                view_borrowedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(view_participated_events, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(view_created_events, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(view_created_tour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(view_participated_tour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(view_rented, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(view_borrowed))
+                .addGap(298, 298, 298))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(228, 228, 228)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,10 +269,20 @@ public class userprofile extends javax.swing.JFrame{
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(view_created_events)
+                    .addComponent(view_created_tour)
+                    .addComponent(view_rented))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(view_participated_events)
+                    .addComponent(view_participated_tour)
+                    .addComponent(view_borrowed))
+                .addGap(39, 39, 39)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -221,15 +291,18 @@ public class userprofile extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
@@ -260,7 +333,178 @@ public class userprofile extends javax.swing.JFrame{
         catch(Exception exc){
             exc.printStackTrace();
         }
+        
+       
+      
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void view_participated_eventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_participated_eventsActionPerformed
+        // TODO add your handling code here:
+        Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+        try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select event_id,event_name,sport,agelimit,venue,time,date from event where event_id in (select event_id from event_user where user_id=" + (userid)+");"; //pending
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_view_participated_eventsActionPerformed
+
+    private void view_participated_tourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_participated_tourActionPerformed
+        // TODO add your handling code here:
+        Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+        try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select tour_id,tour_name,tour_venue,tour_date,tour_sport from tournament where tour_id in (select tour_id from tourn_participation where user_id=" + (userid)+");"; // pending
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+    }//GEN-LAST:event_view_participated_tourActionPerformed
+
+    private void view_rentedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_rentedActionPerformed
+        // TODO add your handling code here:
+         Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+        try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select equip_id,EquipName,address,rentamt,status,description from equipment where userid_owner = " + (userid);
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+        
+       
+     
+        
+    }//GEN-LAST:event_view_rentedActionPerformed
+
+    private void view_borrowedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_borrowedActionPerformed
+        // TODO add your handling code here:
+        Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+         try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select equip_id,EquipName,address,rentamt,status,description from equipment where userid_rentee = " + (userid);
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+        
+    }//GEN-LAST:event_view_borrowedActionPerformed
+
+    private void view_created_eventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_created_eventsActionPerformed
+        // TODO add your handling code here:
+        Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+         try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select event_id,event_name,sport,ageLimit,venue,time,date from event where user_id= " + (userid);
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+    }//GEN-LAST:event_view_created_eventsActionPerformed
+
+    private void view_created_tourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_view_created_tourActionPerformed
+        // TODO add your handling code here:
+        Connection myConn=null;
+        Statement myStmt=null;
+        ResultSet myRs= null;
+        String user="root";
+        String pass="kent";
+        try
+        {
+            myConn= DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/playpal_db", user, pass);
+            //myStmt=myConn.createStatement();
+            System.out.println(userid);
+            String query="select tour_id,tour_name,tour_name,tour_venue,tour_date,tour_sport from tournament where tour_owner = " + (userid);
+           
+            PreparedStatement ps = myConn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            jTable3.setModel(DbUtils.resultSetToTableModel(rs));
+            
+            //"select event_name from event where user_id="+userid;
+            
+           
+        }
+        catch(Exception exc){
+            exc.printStackTrace();
+        }
+    }//GEN-LAST:event_view_created_tourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -311,9 +555,15 @@ public class userprofile extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JButton view_borrowed;
+    private javax.swing.JButton view_created_events;
+    private javax.swing.JButton view_created_tour;
+    private javax.swing.JButton view_participated_events;
+    private javax.swing.JButton view_participated_tour;
+    private javax.swing.JButton view_rented;
     // End of variables declaration//GEN-END:variables
 }

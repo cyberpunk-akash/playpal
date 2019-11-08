@@ -8,6 +8,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import net.proteanit.sql.DbUtils;
+import static playpal.dashboard.userid;
 
 
 
@@ -245,6 +246,8 @@ public class borrowEquipment extends javax.swing.JFrame {
             borrowid.setText("");
 
             System.out.println(bid);
+            String q1="insert into equipment(userid_rentee) values("+userid+");";
+            myStmt.executeUpdate(q1);
             String query="update equipment set status='unavailable' where equip_id="+bid;
             myStmt.executeUpdate(query);
         }

@@ -304,7 +304,7 @@ public class dashboard extends javax.swing.JFrame{
         // TODO add your handling code here:
 
 //        createEvent createEvent= new createEvent();
-        createEvent createEvent = new createEvent();
+        createEvent createEvent = new createEvent(userid);
         createEvent.setVisible(true);
         dispose();
     }//GEN-LAST:event_button2ActionPerformed

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import playpal.dashboard;
+import playpal.scrape;
+import java.sql.*;
 //import static registration.hashPassword;
 
 /*
@@ -22,6 +24,8 @@ import playpal.dashboard;
 public class login extends javax.swing.JFrame {
 int flag = 0;
 public static int userid;
+public double longi,lati;
+String extusrname , extpass;
     /**
      * Creates new form login
      */
@@ -190,16 +194,15 @@ public static int userid;
     
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         // TODO add your handling code here:
-        
-        
-        //int flag ;
+
          Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
        
         String user = "root";
         String pass = "kent";
-        String extusrname , extpass = null;
+        extusrname=null; 
+        extpass = null;
         String entered_user = txtusernamelogin.getText();
         String entered_pass = txtpasswordlogin.getText();
         
@@ -244,19 +247,39 @@ public static int userid;
                         
                    }   
                }
+               //System.out.println("Reached");
         }
 catch (Exception exc){
             exc.printStackTrace();
         }
-        
+        //System.out.println("Reached1");
         if (flag == 0){ 
         JOptionPane.showMessageDialog(null,"Wrong Credentials");
        
         }
         
         if (flag == 1){
-            JOptionPane.showMessageDialog(null,"Login successfull");
+            //System.out.println("Reached2");
+            
+             scrape.scraper();
+             System.out.println("Reached3");
+             longi = scrape.longi;
+             lati = scrape.lati;
+             System.out.println("Longi="+longi);
+             System.out.println("Lati="+lati);
+            String query1 = "update user set latitude="+lati+",longitude="+longi+"where username='"+extusrname+"'";
+             try {
+                 
+                // int x;
+                int x = myStmt.executeUpdate(query1);
+             } catch (SQLException ex) {
+                 System.out.println("This"+ex);
+                 // Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+             }
+            
+            
             new dashboard(userid).setVisible(true);
+            JOptionPane.showMessageDialog(null,"Login successfull");
             
         }
         

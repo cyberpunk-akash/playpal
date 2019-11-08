@@ -31,35 +31,42 @@ public class scrape {
 static double longi, lati;
     //public static void main (String args[]){
 	public static void scraper() {
-                print("running...");
+                //System.out.println("running...");
 		Document document;
 		try {
 			//Get Document object after parsing the html from given url.
                     document = Jsoup.connect("https://www.bing.com/search?q=my+current+location&form=PRINEN&httpsmsn=1&msnews=1&refig=bdf67719eb104b84a4a9267e79fd54ff&sp=-1&pq=my+current+location&sc=8-19&qs=n&sk=&cvid=bdf67719eb104b84a4a9267e79fd54ff").get();
 //                        window.setTimeout(2000);
+                    System.out.print("running...1");
                     Elements link = document.select("h2");
                     String title = document.location();
+                    System.out.println("Title="+title);
                     int i = 0;
                     for(Element ele : link){
                         if(i<6){
                         //print(" maybe "+ ele);
+                         
                             String stringValue=ele.toString();
                             if(stringValue.contains("ppois")){
-                                String bar = StringUtils.substringBetween(stringValue, "ppois=", "20576104_~&amp");
+                                System.out.println("Eleemtnts="+ele.toString());
+                                String bar = StringUtils.substringBetween(stringValue, "ppois=", "Udipi");
+         //look where the ppois ends in the scraped value and replace "Udipi" with that substring
                                 String latitude = StringUtils.substringBefore(bar,"_");
                                 String longitude = StringUtils.substringBetween(bar, "_","_");
-                                String city2 = StringUtils.substringBetween(bar, "_","%2c");
-                                String city = StringUtils.substringAfter(city2,"_");
-                                String State = StringUtils.substringBetween(bar, "%20","%");
+                                //String city2 = StringUtils.substringBetween(bar, "_","%2c");
+                                //String city = StringUtils.substringAfter(city2,"_");
+                                //String State = StringUtils.substringBetween(bar, "%20","%");
                                 longi = Double.parseDouble(longitude);
                                 lati = Double.parseDouble(latitude);
-                              //  System.out.println("longi" + longi + " lati " + lati);
+                              System.out.println("longitude=" + longi + " latitude= " + lati);
                             }
                         }
                     }
+                    System.out.print("running...2");
 		} 
                 catch (IOException e) {
                     e.printStackTrace();
+                    //System.out.print(e);
 		}
 		//print("done");
 	}

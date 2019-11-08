@@ -40,30 +40,32 @@ public class createEvent extends javax.swing.JFrame {
     public void senduserEmail(String email){
     final String username = "playpalhdtk0707@gmail.com";
         final String password = "playpalhdtk!%";
-
+System.out.println("Here0");
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-
+        System.out.println("Here");
         Session session = Session.getInstance(props,
           new javax.mail.Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
             }
-          });
+          }
+        );
+        System.out.println("Here2");
 
         try {
-
+            System.out.println("Here3");
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("playpalhdtk@gmail.com"));
             message.setRecipients(Message.RecipientType.TO,
                 InternetAddress.parse(email));
             message.setSubject("event");
-            message.setText("hello user,"
-                + "\n\n Theres an event happening near you!");
+            message.setText("Hello user,"
+                + "\n\n Theres an event happening near you! Do join if interested.");
 
             Transport.send(message);
         } catch (MessagingException e) {
@@ -291,7 +293,7 @@ public class createEvent extends javax.swing.JFrame {
         ResultSet myRs = null;
         
         String user = "root";
-        String pass = "mypass";
+        String pass = "kent";
         try {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/playpal_db", user, pass);
             // 2. Create a statement
@@ -326,26 +328,29 @@ public class createEvent extends javax.swing.JFrame {
                {
                    username = myRs.getString("user_id");
                    email = myRs.getString("email");
+                   if(email.isEmpty())
+                       continue;
                    
                    String lattt = myRs.getString("latitude");
                    String longg = myRs.getString("longitude");
                    
                    latitude = Double.parseDouble(lattt);
                    longitude = Double.parseDouble(longg);
-                   
+                   System.out.println("This");
                     latitude = Math.toRadians(latitude); 
                     lati = Math.toRadians(lati); 
                     longitude = Math.toRadians(longitude); 
                     longi = Math.toRadians(longi); 
-        
+                    //System.out.println("This1");
                      //haversine formula
                     double dlon = longi - longitude;  
                     double dlat = lati - latitude; 
+                      //System.out.println("This2");
         
                     double a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(latitude) * Math.cos(lati) * Math.pow(Math.sin(dlon / 2),2); 
-        
+                      //System.out.println("This3");
                     double distance = 2 * Math.asin(Math.sqrt(a)) * 6371;
-                    
+                      System.out.println("Distance="+distance);
                     if(distance > 8300.0 && userid != Integer.parseInt(username))
                         senduserEmail(email);
                 }
@@ -353,7 +358,7 @@ public class createEvent extends javax.swing.JFrame {
                
             }
             catch (Exception e) {
-                System.out.println(e);
+                System.out.println("This"+e);
             }  
         }catch (Exception exc){
             exc.printStackTrace();

@@ -84,7 +84,7 @@ alter table user drop dob;
 alter table user add balance numeric(10,2);
 alter table tournament add tour_owner int;
 alter table equipment add description varchar(255);
-alter table user add latitude 
-alter table user add longitude
+alter table user add latitude numeric(30,20);
+alter table user add longitude numeric(30,20);
 
 
